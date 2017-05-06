@@ -9,13 +9,21 @@ git branch -d dev
 
 cd ../dev
 git clone git@github.com:francoisroyer/francoisroyer.github.io.git .
-git checkout -b dev
+#git checkout origin/dev -b dev
+#git checkout -b dev
 git branch -d master
+
+# Publishing changes
 
 cd ../dev
 cactus build
-cp -R .build/ ../master
+
 cd ../master
+rm -r !(CNAME|.git)
+cp -R ../dev/.build/* ./
 git add .
 git commit -m "publishing"
 git push origin master
+
+
+
